@@ -1,0 +1,89 @@
+//** Susy Grid **//
+
+// Default grid settings
+// Override in your sass file to customize
+$total-cols: 12 !default
+$col-width: 4em !default
+$gutter-width: 1em !default
+$side-gutter-width: $gutter-width !default
+
+// Susy will set your outer shell based on the variable above
+$container-width: container($total-cols, $col-width, $gutter-width, $side-gutter-width)
+
+// Set +container on the outer grid containing elements
+@mixin container
+    // clear all floated columns
+    @include pie-clearfix
+    margin-left: auto
+    margin-right: auto
+    width: $container-width
+    max-width: 100%
+
+// Set +columns() on any column element, even nested ones.
+// The first agument [required] is the number of columns to span.
+// The second argument is the context (columns spanned by parent).
+//  - Context is required on any nested elements.
+//  - Context MUST NOT be declared on a top-level element.
+// By default a grid-column is floated left with a right gutter.
+//  - Override those with +float("right"), +alpha or +omega
+@mixin columns($n, $context: false)
+    // the column is floated left
+    @include float(left)
+    width: columns($n, $context)
+    margin-right: gutter($context)
+
+@mixin un-column
+    float: none
+    display: block
+    width: auto
+    margin-right: auto
+
+@mixin prefix($n, $context: false)
+    padding-left: columns($n, $context) + gutter($context)
+
+@mixin suffix($n, $context: false)
+    padding-right: columns($n, $context) + gutter($context)
+
+@mixin pad($p: false, $s: false, $c: false)
+    @if $p
+        @include prefix($p, $c)
+    @if $s
+        @include suffix($s, $c)
+
+// Set +alpha on any element spanning the first column in non-nested 
+// context to take side-gutters into account. Recommended that you pass 
+// the actual nested contexts (when nested) rather than a true/false 
+// argument for the sake of consistency. Effect is the same.
+@mixin alpha($nested: false)
+    @if not $nested
+        margin-left: side-gutter()
+    @else
+        @warn "The alpha mixin is not needed in a nested context"
+
+// Sets the direction that +omega elements are floated
+//  - Override $omega_float globally or set +float locally to change
+$omega-float: right !default
+
+// Set +omega() on the last element of a row, in order to take side-gutters
+// and the page edge into account. Set the $nested argument for nested 
+// columns. It is recommended that you pass the actual nested context when 
+// nested, rather than a true/false argument, for the sake of consistency. 
+// Effect is the same.
+@mixin omega($nested: false)
+    @include float($omega-float)
+    @if $nested
+        margin-right: 0
+    @else
+        margin-right: side-gutter()
+    @if $omega-float == right
+        margin-left: - $gutter-width
+    @else
+        margin-right: - $gutter-width
+
+// Set +full() on an element that will span it's entire context.
+// There is no need for +columns, +alpha or +omega on a +full element.
+@mixin full($nested: false)
+    clear: both
+    @if not $nested
+        margin-right: side-gutter()
+        margin-left: side-gutter()
