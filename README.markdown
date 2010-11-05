@@ -15,14 +15,12 @@ the Susy framework. Requires a sass compiler like [django-css](https://github.co
 1. Add 'compass' to INSTALLED_APPS
 2. Make sure your have configured django.contrib.staticfiles in your settings
 	
-
-	import os
-	here = lambda x: os.path.join(os.path.abspath(os.path.dirname(__file__)), x)
-	STATICFILES_ROOT = here('static')
-	STATICFILES_FINDERS = (
-	    "django.contrib.staticfiles.finders.FileSystemFinder",
-	    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-	)
+		import os
+		here = lambda x: os.path.join(os.path.abspath(os.path.dirname(__file__)), x)
+		STATICFILES_ROOT = here('static')
+		STATICFILES_FINDERS = (
+	    	"django.contrib.staticfiles.finders.FileSystemFinder",
+	    	"django.contrib.staticfiles.finders.AppDirectoriesFinder",)
 
 3. Run ./manage.py collectstatic
 4. Compile your SASS with something like [django-css](https://github.com/dziegler/django-css/)
