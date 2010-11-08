@@ -1,0 +1,24 @@
+// The default value is `padding-box` -- the box model used by modern browsers.
+// If you wish to do so, you can override the default constant with `border-box`
+// To override to the default border-box model, use this code:
+//     $default-background-clip = border-box
+
+$default-background-clip: padding-box !default
+
+// Clip the background (image and color)
+// Legal values:
+// * padding-box
+// * border-box
+// * text
+
+@mixin background-clip($clip: $default-background-clip)
+    // webkit and mozilla use the depreciated short [border | padding]
+    $clip: unquote($clip)
+    $depreciated: $clip
+    @if $clip == padding-box
+        $depreciated: padding
+    @if $clip == border-box
+        $depreciated: border
+    // Support for webkit and mozilla's use of the depreciated short form
+    @include experimental(background-clip, $depreciated, -moz, -webkit, not -o, not -ms, not -khtml, not official)
+    @include experimental(background-clip, $clip, not -moz, not -webkit, -o, -ms, -kthml, official)

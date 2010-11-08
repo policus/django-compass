@@ -1,0 +1,10 @@
+@import "compass/css3/shared"
+
+// Since we can't install patterns, this isn't going to be turned on by default
+$use-mozilla-ellipsis-binding: false !default
+
+@mixin ellipse($no-wrap: true)
+	@if $no-wrap
+		white-space: nowrap
+	overflow: hidden
+	@include experimental(text-overflow, ellipsis, not -moz, not -webkit, -o, -ms, not -khtml, official)

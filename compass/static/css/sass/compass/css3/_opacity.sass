@@ -1,0 +1,13 @@
+@mixin opacity($opacity)
+    opacity: $opacity
+    @if $experimental-support-for-microsoft
+        @value: unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=#{round($opacity * 100)})")
+        @include experimental(filter, $value, not -moz, not -webkit, not -o, -ms, not -khtml, official)
+    
+// Make an element completely transparent
+@mixin transparent
+    @include opacity(0)
+
+// Make and element comlpetely opaque
+@mixin opaque
+    @include opacity(1)

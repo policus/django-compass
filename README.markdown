@@ -24,3 +24,15 @@ the Susy framework. Requires a sass compiler like [django-css](https://github.co
 
 3. Run ./manage.py collectstatic
 4. Compile your SASS with something like [django-css](https://github.com/dziegler/django-css/)
+
+## Using Compass in your Templates
+
+Create a base sass file in your /static/css directory. We'll use `full.sass` as an example. It should look something like this
+
+    @import "sass/compass"
+    @import "sass/frameworks/susy"
+
+    body
+        @include susy
+
+This will load up Compass, the Susy framework, and initialize Susy on the body element

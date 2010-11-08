@@ -1,0 +1,9 @@
+@import "compass/utilities"
+@import "inline_block_list"
+
+// Apply to your container elements to show a grid image
+// You will need to supply the image.
+@mixin show-grid($src)
+    background-image: url($src)
+    background-repeat: repeat
+    background-position: $side-gutter-width 0

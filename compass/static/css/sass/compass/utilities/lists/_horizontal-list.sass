@@ -1,0 +1,21 @@
+// Horizontal list layout module
+@mixin horizontal-list-container
+	@include reset-box-model
+	@include clearfix
+
+@mixin horizontal-list-item($padding: 4px, $direction: left)
+	@include no-bullet
+	white-space: nowrap
+	@include float($direction)
+	@if $padding
+		padding-left: $padding
+		padding-right: $padding
+	&:first-child, &.first
+		padding-#{$direction}: 0
+	&:last-child, &.last
+		padding-#{opposite-position($direction)}: 0
+
+@mixin horizontal-list($padding: 4px, $direction: left)
+	@include horizontal-list-container
+	li
+		@include horizontal-list-item($padding, $direction)

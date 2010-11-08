@@ -1,0 +1,15 @@
+@mixin inline-block-list-container
+	@include horiziontal-list-container
+
+@mixin inline-block-list-item($padding: false)
+	@include no-bullet
+	@include inline-block
+	white-space: nowrap
+	@if $padding
+		padding-left: $padding
+		padding-right: $padding
+
+@mixin inline-block-list($padding: false)
+	@include inline-block-list-container
+	li
+		@include inline-block-list-item($padding)
