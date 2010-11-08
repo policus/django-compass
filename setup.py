@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from disutils.core import setup
+from distutils.core import setup
 import os
 
 # Compile the list of packages available, because disutils doesn't have an
@@ -27,7 +27,7 @@ for dirpath, dirnames, filenames in os.walk('compass'):
 
 setup(
     name='django-compass',
-    version='0.1'
+    version='0.1',
     description='django-compass is a port of Compass (http://compass-style.org/) for use with Django 1.3+',
     author='Policus',
     author_email='Alex Cabrera <alex@policus.com>',
