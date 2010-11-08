@@ -1,8 +1,4 @@
-@mixin alternating-rows-and-columns($even-row-color, 
-	$odd-row-color, 
-	$dark-intersection, 
-	$header-color: white,
-	$footer-color: white)
+@mixin alternating-rows-and-columns($even-row-color, $odd-row-color, $dark-intersection, $header-color: white, $footer-color: white)
 	th
 		background-color: $header-color
 		&.even, &:nth-child(2n)
