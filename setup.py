@@ -1,10 +1,8 @@
-#!/usr/bin/env python
 from distutils.core import setup
 import os
-
+import logging
 # Compile the list of packages available, because disutils doesn't have an
 # easy way to do this
-
 packages, data_files = [], []
 root_dir = os.path.dirname(__file__)
 if root_dir:
@@ -21,19 +19,20 @@ for dirpath, dirnames, filenames in os.walk('compass'):
             pkg = pkg.replace(os.path.altsep, '.')
         packages.append(pkg)
     elif filenames:
-        prefix = dirpath[9:] # Strip "registration/" or "registration\"
+        prefix = dirpath # Strip "registration/" or "registration\"
         for f in filenames:
             data_files.append(os.path.join(prefix, f))
-
+            
 setup(
     name='django-compass',
     version='0.1',
     description='django-compass is a port of Compass (http://compass-style.org/) for use with Django 1.3+',
+    long_description=open('README.markdown').read(),
     author='Policus',
     author_email='Alex Cabrera <alex@policus.com>',
     url='https://github.com/policus/django-compass',
-    packages = packages,
-    package_data = {'compass':data_files},
+    packages=packages,
+    data_files=data_files,
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',

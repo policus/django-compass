@@ -1,0 +1,7 @@
+setup.py
+compass/__init__.py
+compass/models.py
+django_compass.egg-info/PKG-INFO
+django_compass.egg-info/SOURCES.txt
+django_compass.egg-info/dependency_links.txt
+django_compass.egg-info/top_level.txt
