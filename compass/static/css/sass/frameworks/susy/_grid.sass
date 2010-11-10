@@ -8,7 +8,7 @@ $gutter-width: 1em !default
 $side-gutter-width: $gutter-width !default
 
 // Susy will set your outer shell based on the variable above
-$container-width: container($total-cols, $col-width, $gutter-width, $side-gutter-width)
+$container-width: ($total-cols * $col-width) + (($total-cols - 1) * $gutter-width) + (2 * $side-gutter-width)
 
 // Set +container on the outer grid containing elements
 @mixin container
