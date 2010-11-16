@@ -26,11 +26,11 @@ $container-width: ($total-cols * $col-width) + (($total-cols - 1) * $gutter-widt
 //  - Context MUST NOT be declared on a top-level element.
 // By default a grid-column is floated left with a right gutter.
 //  - Override those with +float("right"), +alpha or +omega
+
 @mixin columns($n, $context: false)
-    // the column is floated left
     @include float(left)
-    width: columns($n, $context)
-    margin-right: gutter($context)
+    width: (($n * $col-width) + (($n - 1) * $gutter-width)) / ($side-gutter-width * 2)em
+    margin-right: $gutter-width
 
 @mixin un-column
     float: none

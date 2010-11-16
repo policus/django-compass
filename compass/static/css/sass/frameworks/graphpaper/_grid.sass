@@ -1,0 +1,49 @@
+// Default Settings, override if you want
+$total-cols: 24 !default
+$col-width: 32px !default
+$gutter-width: 12px !default
+$side-gutters: 3px !default
+
+// Calculated Values, don't touch these
+
+$col-outer-width: $col-width + $gutter-width
+$container-width: ($col-outer-width * $total-cols) - $gutter-width
+
+// Mixins
+
+@mixin grid-container($center: true)
+    position: relative
+    display: block
+    width: $container-width
+    padding-left: $side-gutters
+    padding-right: $side-gutters
+    @if $center
+        margin: 0px auto
+    @include clearfix
+
+@mixin container
+    display: block
+    width: 100%
+    @include clearfix
+
+@mixin columns($n: 1)
+    @include float(left)
+    width: ($col-width * $n) + ($gutter-width * ($n - 1))
+    margin-right: $gutter-width
+
+@mixin last
+    margin-right: 0
+
+@mixin prepend($n: 1)
+    padding-left: $col-outer-width * $n
+
+@mixin append($n: 1)
+    padding-right: $col-outer-width * $n
+
+@mixin push($n: 1)
+    @include float(left)
+    margin-left: $col-outer-width * $n
+
+@mixin pull($n: 1)
+    @include float(left)
+    margin-left: ($col-outer-width * $n) * -1
